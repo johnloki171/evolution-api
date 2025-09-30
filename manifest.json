@@ -1,0 +1,93 @@
+{
+  "manifest_version": 3,
+  "name": "O Melhor Robô",
+  "description": "Assistente de IA prático e contextual no navegador.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "O Melhor Robô",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "contextMenus",
+    "notifications",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://api.openai.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles.css",
+        "assets/icons/icon16.png",
+        "assets/icons/icon48.png",
+        "assets/icons/icon128.png"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "commands": {
+    "ia_texto_selecionado": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Space"
+      },
+      "description": "IA na Mão: abrir chat com texto selecionado"
+    },
+    "flash_insights": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+."
+      },
+      "description": "IA na Cara: Flash Insights (resumo rápido)"
+    },
+    "deep_dive": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+,"
+      },
+      "description": "IA na Cara: Deep Dive (análise detalhada)"
+    },
+    "screenshot_select": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P"
+      },
+      "description": "Trecos Úteis: Print de tela com seleção"
+    },
+    "voice_toggle": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+I"
+      },
+      "description": "Trecos Úteis: Iniciar/Parar ditado por voz"
+    },
+    "duplicate_tab": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D"
+      },
+      "description": "Trecos Úteis: Duplicar aba"
+    },
+    "rename_tab": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+R"
+      },
+      "description": "Trecos Úteis: Renomear aba (sessão)"
+    }
+  }
+}

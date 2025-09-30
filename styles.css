@@ -1,0 +1,167 @@
+/* Estilos globais para UI do "O Melhor Robô" injetada via content.js */
+
+:root {
+  --omr-font: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --omr-radius: 12px;
+  --omr-spacing: 10px;
+  --omr-z: 2147483000;
+
+  /* Tema claro */
+  --omr-bg: rgba(255, 255, 255, 0.92);
+  --omr-fg: #111;
+  --omr-muted: #666;
+  --omr-border: #e5e7eb;
+  --omr-accent: #111;
+  --omr-bubble-user: #111;
+  --omr-bubble-user-fg: #fff;
+  --omr-bubble-bot: #f5f5f5;
+  --omr-bubble-bot-fg: #111;
+}
+
+.omelhorrobo-dark {
+  --omr-bg: rgba(15, 15, 15, 0.92);
+  --omr-fg: #f3f4f6;
+  --omr-muted: #9ca3af;
+  --omr-border: #27272a;
+  --omr-accent: #f3f4f6;
+  --omr-bubble-user: #222;
+  --omr-bubble-user-fg: #fff;
+  --omr-bubble-bot: #111;
+  --omr-bubble-bot-fg: #f3f4f6;
+}
+
+/* Contêiner raiz (shadow host) */
+.omr-root {
+  all: initial;
+  font-family: var(--omr-font);
+}
+
+/* Ícone flutuante (draggable) */
+.omr-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--omr-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  cursor: grab;
+  user-select: none;
+  z-index: var(--omr-z);
+}
+.omr-fab:active { cursor: grabbing; }
+
+/* Janela do chat */
+.omr-chat {
+  position: fixed;
+  right: 24px;
+  bottom: 90px;
+  width: 380px;
+  height: 520px;
+  max-height: 75vh;
+  background: var(--omr-bg);
+  color: var(--omr-fg);
+  border: 1px solid var(--omr-border);
+  border-radius: var(--omr-radius);
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  resize: both; /* permitir resize por qualquer borda/canto */
+  z-index: var(--omr-z);
+}
+
+.omr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--omr-border);
+  font-weight: 600;
+}
+.omr-header .omr-title { display: flex; gap: 8px; align-items: center; }
+.omr-header .omr-controls { display: flex; gap: 6px; }
+.omr-iconbtn {
+  width: 28px; height: 28px; display: grid; place-items: center;
+  border-radius: 8px; cursor: pointer; color: var(--omr-fg);
+}
+.omr-iconbtn:hover { background: rgba(127,127,127,.15); }
+
+.omr-body {
+  flex: 1;
+  overflow: auto;
+  padding: var(--omr-spacing);
+  font-family: var(--omr-font);
+}
+
+.omr-msg {
+  max-width: 90%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 8px 0;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.omr-msg.user { background: var(--omr-bubble-user); color: var(--omr-bubble-user-fg); margin-left: auto; }
+.omr-msg.bot { background: var(--omr-bubble-bot); color: var(--omr-bubble-bot-fg); margin-right: auto; }
+
+.omr-msg .omr-msg-actions { display: flex; gap: 8px; margin-top: 6px; opacity: .8; font-size: 12px; }
+.omr-msg .omr-msg-actions span { cursor: pointer; }
+
+/* markdown básico */
+.omr-msg strong, .omr-msg b { font-weight: 700; }
+.omr-msg em, .omr-msg i { font-style: italic; }
+.omr-msg code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: rgba(127,127,127,.15); padding: 2px 5px; border-radius: 6px; }
+.omr-msg pre code { display: block; padding: 10px; overflow: auto; }
+
+.omr-input {
+  border-top: 1px solid var(--omr-border);
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+}
+.omr-textarea {
+  flex: 1;
+  min-height: 40px;
+  max-height: 160px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--omr-border);
+  resize: none;
+  outline: none;
+  background: transparent;
+  color: var(--omr-fg);
+}
+.omr-sendbtn { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--omr-border); cursor: pointer; background: var(--omr-accent); color: #fff; }
+
+.omr-slash-menu {
+  position: absolute;
+  bottom: 60px;
+  left: 12px;
+  background: var(--omr-bg);
+  border: 1px solid var(--omr-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  overflow: hidden;
+}
+.omr-slash-item { padding: 8px 12px; cursor: pointer; }
+.omr-slash-item:hover { background: rgba(127,127,127,.15); }
+
+.omr-toast {
+  position: fixed;
+  bottom: 20px; left: 20px;
+  background: var(--omr-bg);
+  color: var(--omr-fg);
+  border: 1px solid var(--omr-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  z-index: var(--omr-z);
+}
+
