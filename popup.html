@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O Melhor Robô – Configurações Rápidas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      :root { --fg:#111; --bg:#fff; --border:#e5e7eb; --radius:10px; font-family: 'Montserrat', system-ui; }
+      body { margin: 0; padding: 12px; background: var(--bg); color: var(--fg); min-width: 320px; }
+      h1 { font-size: 16px; margin: 0 0 10px; }
+      .row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+      .col { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+      input[type="text"], input[type="password"], select, input[type="range"] { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius); }
+      .btn { padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: #111; color: #fff; }
+      .split { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+      .hint { color: #666; font-size: 12px; }
+      .toast { position: fixed; bottom: 12px; right: 12px; background: #111; color: #fff; padding: 8px 12px; border-radius: 8px; display: none; }
+      .row label { min-width: 120px; }
+      .mode { display: flex; gap: 6px; }
+    </style>
+  </head>
+  <body>
+    <h1>O Melhor Robô</h1>
+    <div class="col">
+      <label for="apiKey">Chave da API OpenAI</label>
+      <div class="split">
+        <input id="apiKey" type="password" placeholder="sk-..." />
+        <button id="btnTest" class="btn">Testar</button>
+      </div>
+      <div class="hint">A chave é salva apenas localmente.</div>
+    </div>
+
+    <div class="row">
+      <label for="model">Modelo</label>
+      <select id="model">
+        <option value="gpt-4.1-mini">GPT-4.1 Mini</option>
+        <option value="gpt-4.1">GPT-4.1</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="theme">Tema</label>
+      <div class="mode">
+        <label><input type="radio" name="theme" value="light" checked /> Claro</label>
+        <label><input type="radio" name="theme" value="dark" /> Escuro</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="transparency">Transparência</label>
+      <input id="transparency" type="range" min="70" max="100" step="1" />
+    </div>
+
+    <div class="row">
+      <button id="btnSave" class="btn">Salvar</button>
+      <a id="shortcutsLink" href="chrome://extensions/shortcuts" target="_blank">Atalhos de teclado</a>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="popup.js"></script>
+  </body>
+  </html>
+
